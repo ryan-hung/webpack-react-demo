@@ -1,6 +1,8 @@
-document.querySelector("#app").innerHTML = "Hello world!";
+import React from "react";
+import ReactDOM  from "react-dom";
+import Hello from "./hello";
 
-var func = str => {
-  console.log(str);
-};
-func('我现在在使用Babel!');
+ReactDOM.render(
+  <Hello />,
+  document.querySelector("#app")
+);
