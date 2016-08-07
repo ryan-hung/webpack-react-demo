@@ -4,7 +4,7 @@ class Hello extends React.Component {
   render() {
     return (
       <div>
-        Hello, React!
+        Hello, {this.props.name}!
       </div>
     )
   }

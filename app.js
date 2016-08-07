@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM  from "react-dom";
-import Hello from "./hello";
+import Avatar from "./src/components/avatar";
 
 ReactDOM.render(
-  <Hello />,
+  <Avatar username="Redux!" />,
   document.querySelector("#app")
 );
