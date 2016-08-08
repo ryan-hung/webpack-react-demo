@@ -64,86 +64,67 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var FormPractice = function (_React$Component) {
-	  _inherits(FormPractice, _React$Component);
+	var Refs = function (_React$Component) {
+	  _inherits(Refs, _React$Component);
 
-	  function FormPractice(props) {
-	    _classCallCheck(this, FormPractice);
+	  function Refs() {
+	    _classCallCheck(this, Refs);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FormPractice).call(this, props));
-
-	    _this.state = {
-	      text: "Hello",
-	      text2: "React",
-	      text3: "Awesome"
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Refs).apply(this, arguments));
 	  }
 
-	  _createClass(FormPractice, [{
-	    key: "handleChangeText",
-	    value: function handleChangeText(e) {
-	      this.setState({ text2: e.target.value });
+	  _createClass(Refs, [{
+	    key: "handleClick",
+	    value: function handleClick(e) {
+	      this.refs.myInput.focus();
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var text = this.state.text;
-	      var text2 = this.state.text2;
-	      var text3 = this.state.text3;
 	      return _react2.default.createElement(
 	        "div",
 	        null,
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "受限文本框:"
-	          ),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("input", { type: "text", value: text })
-	        ),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "监听改变事件改变state，取消受限:"
-	          ),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("input", { type: "text", value: text2, onChange: this.handleChangeText.bind(this) }),
-	          " ",
-	          text2
-	        ),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "defaultValue设置为非受限文本框:"
-	          ),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("br", null),
-	          _react2.default.createElement("input", { type: "text", defaultValue: text3 }),
-	          " ",
-	          text3
-	        )
+	        _react2.default.createElement("input", { ref: "myInput", type: "text" }),
+	        _react2.default.createElement("input", { type: "button",
+	          value: "Focus!",
+	          onClick: this.handleClick.bind(this)
+	        })
 	      );
 	    }
 	  }]);
 
-	  return FormPractice;
+	  return Refs;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(FormPractice, null), document.querySelector("#app"));
+	/**
+	 * 使用refs可以快速精准的得到你所拥有的组件
+	 * this.refs.refName 得到目标组件 refName为目标组件的ref值
+	 *
+	 * 组件的生命周期：挂载  更新  销毁
+	 * 挂载
+	 * getInitialState ( this.state in es6) 对象在组件被挂载之前调用
+	 * componentWillMount 在即将挂载之前调用
+	 * componentDidMount 在挂载完成之后调用 需要dom节点的初始化操作应该放在这里
+	 *
+	 * 更新
+	 * componentWillReceiveProps(object nextProps) 当组件接收到新的props时候调用 该方法用于比较this.props和nextProps，然后用this.setState改变状态
+	 * shouldComponentUpdate(object nextProps, object nextState): boolean 当组件做出是否需要更新dom的决定时被调用
+	 * componentWillUpdate(object nextProps, object nextState)在更新发生之前被调用。可以在这里调用this.setState()。
+	 * componentDidUpdate(object prevProps, object prevState)在更新发生之后调用。
+	 *
+	 * 销毁
+	 * componentWillUnmount()在组件移除和销毁之前被调用。清理工作应该放在这里。
+	 *
+	 * 优点
+	 * 可以在组件类里面定义任何公共的方法，然后通过refs来调用这些公共的方法
+	 * 获取dom节点 通过 this.refs.myInput 是获取组件唯一可靠的方式
+	 * refs 是自动管理的，一个组件一旦被销毁，那么他的 ref 也会被销毁 所以不用担心内存为题，除非你在某些地方使用了引用
+	 *
+	 * 注意
+	 * 不要在组件被挂载之前、或 render 方法中访问 refs
+	 */
+
+	_reactDom2.default.render(_react2.default.createElement(Refs, null), document.querySelector("#app"));
 
 /***/ },
 /* 1 */

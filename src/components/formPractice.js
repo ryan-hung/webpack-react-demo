@@ -49,6 +49,14 @@ class FormPractice extends React.Component {
   }
 }
 
+/**
+ * 不受限组件
+ * input select textarea 支持defaultValue属性
+ * input radio checkbox 支持defaultChecked属性
+ * textarea设置默认值不应该使用子节点方式，而应该使用value或defaultValue传值设置，换行使用\n
+ * 
+ */
+
 ReactDOM.render(
   <FormPractice />,
   document.querySelector("#app")
