@@ -3,6 +3,6 @@ import ReactDOM  from "react-dom";
 import Avatar from "./src/components/avatar";
 
 ReactDOM.render(
-  <Avatar username="Redux!" />,
+  <Avatar username="hongcan" />,
   document.querySelector("#app")
 );
