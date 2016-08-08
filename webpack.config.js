@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./src/components/fancyCheckBox.js",
+  entry: "./src/components/formPractice.js",
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js"

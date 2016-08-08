@@ -46,8 +46,6 @@
 
 	"use strict";
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -60,53 +58,92 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var FancyCheckBox = function (_React$Component) {
-	  _inherits(FancyCheckBox, _React$Component);
+	var FormPractice = function (_React$Component) {
+	  _inherits(FormPractice, _React$Component);
 
-	  function FancyCheckBox() {
-	    _classCallCheck(this, FancyCheckBox);
+	  function FormPractice(props) {
+	    _classCallCheck(this, FormPractice);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FancyCheckBox).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FormPractice).call(this, props));
+
+	    _this.state = {
+	      text: "Hello",
+	      text2: "React",
+	      text3: "Awesome"
+	    };
+	    return _this;
 	  }
 
-	  _createClass(FancyCheckBox, [{
+	  _createClass(FormPractice, [{
+	    key: "handleChangeText",
+	    value: function handleChangeText(e) {
+	      this.setState({ text2: e.target.value });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _props = this.props;
-	      var checked = _props.checked;
-	      var title = _props.title;
-
-	      var other = _objectWithoutProperties(_props, ["checked", "title"]);
-
-	      var fancyClass = checked ? 'FancyChecked' : 'FancyUnchecked';
-	      var fancyTitle = checked ? 'X ' + title : 'O ' + title;
-	      var checkStatus = checked ? 'checked' : '';
-	      console.log(_extends({}, other));
+	      var text = this.state.text;
+	      var text2 = this.state.text2;
+	      var text3 = this.state.text3;
 	      return _react2.default.createElement(
-	        "label",
+	        "div",
 	        null,
-	        _react2.default.createElement("input", _extends({}, other, {
-	          defaultChecked: checkStatus,
-	          className: fancyClass,
-	          type: "checkbox"
-	        })),
-	        fancyTitle
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "受限文本框:"
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("input", { type: "text", value: text })
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "监听改变事件改变state，取消受限:"
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("input", { type: "text", value: text2, onChange: this.handleChangeText.bind(this) }),
+	          " ",
+	          text2
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "defaultValue设置为非受限文本框:"
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement("input", { type: "text", defaultValue: text3 }),
+	          " ",
+	          text3
+	        )
 	      );
 	    }
 	  }]);
 
-	  return FancyCheckBox;
+	  return FormPractice;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(FancyCheckBox, { checked: true, title: "哈哈", onClick: console.log.bind("123") }), document.querySelector("#app"));
+	_reactDom2.default.render(_react2.default.createElement(FormPractice, null), document.querySelector("#app"));
 
 /***/ },
 /* 1 */
